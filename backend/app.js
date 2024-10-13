@@ -31,12 +31,14 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  if (!req.originalUrl.startsWith('/api/v1')) {
-    req.url = '/api/v1' + req.url; // Prepend /api/v1 to the URL
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   if (!req.originalUrl.startsWith('/api/v1')) {
+//     console.log(req.url);
+    
+//     req.url = '/api/v1' + req.url; // Prepend /api/v1 to the URL
+//   }
+//   next();
+// });
 
 
 app.use("/message", messageRouter);
