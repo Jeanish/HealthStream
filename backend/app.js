@@ -31,9 +31,17 @@ app.use(
   })
 );
 
-app.use("/api/v1/message", messageRouter);
-app.use("/api/v1/user", userRouter);
-app.use("/api/v1/appointment", appointmentRouter);
+app.use((req, res, next) => {
+  if (!req.originalUrl.startsWith('/api/v1')) {
+    req.url = '/api/v1' + req.url; // Prepend /api/v1 to the URL
+  }
+  next();
+});
+
+
+app.use("/message", messageRouter);
+app.use("/user", userRouter);
+app.use("/appointment", appointmentRouter);
 
 dbConnection();
 
