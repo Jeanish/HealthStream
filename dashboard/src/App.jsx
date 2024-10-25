@@ -31,6 +31,7 @@ const App = () => {
         setIsAuthenticated(true);
         setAdmin(response.data.user);
       } catch (error) {
+        console.error("Error fetching patient data:", error.response.data);
         setIsAuthenticated(false);
         setAdmin({});
       }
